@@ -20,9 +20,10 @@ export const typeDefs = `#graphql
     }
     type Query {
         hello:String
-        books: [Book]
+        books(genre: Genre, limit: Int, skip: Int): [Book]
         book(id: ID,last:Int): Book
         me: User
+        myBooks: [Book]
     }
     input AddBookInput {
         title: String!,
@@ -49,6 +50,8 @@ export const typeDefs = `#graphql
     }
     type Mutation {
         addBook(input: AddBookInput): Book
+        updateBook(input: updateBookInput): Book
+        deleteBook(id: ID!): String
         signup(input:SingupInput): String
         login(input: loginInput): AuthPayload
     }
